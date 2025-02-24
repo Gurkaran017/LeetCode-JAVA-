@@ -1,0 +1,21 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int index = -1;
+        int n = needle.length();
+        HashSet<String> set = new HashSet<>();
+        if(n>haystack.length()){
+            return index;
+        }
+        for(int i = 0 ; i <=haystack.length()-n ; i++){
+            String s = haystack.substring(i,i+n);
+            System.out.println(s);
+            if(!set.contains(s)){
+                set.add(s);
+            }
+            if(set.contains(needle)){
+                return i;
+            }
+        }
+        return index;
+    }
+}
