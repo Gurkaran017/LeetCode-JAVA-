@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        String str1 = "";
+        String str2 = "";
+        HashSet<String> set = new HashSet<>();
+        if(s.length()==0){
+            return true;
+        }
+
+        for(int i = 0 ; i <s.length() ; i++){
+            char ch = s.charAt(i);
+            if(Character.isLetterOrDigit(ch)){
+                char low = Character.toLowerCase(ch);
+                str1 = str1 + low;
+                str2 = low + str2;
+            }
+        }
+        set.add(str1);
+
+        if(set.contains(str2)){
+            return true;
+        }
+        System.out.println(str1);
+        System.out.println(str2);
+        return false;
+    }
+}
