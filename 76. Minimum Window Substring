@@ -1,0 +1,113 @@
+class Solution {
+    public String minWindow(String s, String t) {
+        int start = 0;
+        int end = 0;
+        int count = t.length();
+        String result = "";
+        HashMap<Character,Integer> freq = new HashMap<>();
+        
+        for(int i = 0 ; i  <t.length() ; i++){
+            char ch = t.charAt(i);
+            if(!freq.containsKey(ch)){
+                freq.put(ch,1);
+            }
+            else{
+                freq.put(ch,freq.get(ch)+1);
+            }
+        }
+
+        while(end<s.length()){
+            if(freq.containsKey(s.charAt(end))){
+                if(freq.get(s.charAt(end))>0){
+                    count--;
+                }
+                freq.put(s.charAt(end),freq.get(s.charAt(end))-1);
+            }
+            if(count==0){
+                while(start<end){
+                    if(freq.containsKey(s.charAt(start))){
+                        boolean valid = freq.get(s.charAt(start))+1 <=0 ? true : false;
+                        if(valid){
+                            freq.put(s.charAt(start),freq.get(s.charAt(start))+1);
+                            start++;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    else{
+                        start++;
+                    }
+                }
+                String temp = s.substring(start,end+1);
+                if(result.isEmpty() || result.length()>temp.length()){
+                    result=temp;
+                }
+            }
+            end++;
+        }
+        return result;
+
+
+
+
+
+
+        // HashMap<Character,Integer> freq = new HashMap<>();
+        // String a="";
+        // if(s.length()<t.length()){
+        //     return a;
+        // }
+        // for(int i = 0 ; i <t.length() ; i++){
+        //     char ch = t.charAt(i);
+        //     if(!freq.containsKey(ch)){
+        //         freq.put(ch,1);
+        //     }
+        //     else{
+        //         freq.put(ch,freq.get(ch)+1);
+        //     }
+        // }
+        // int count = 0;
+        // int min=99;
+        // int start = 0;
+        // int end = 0;
+
+        // for (int i = 0; i < s.length(); i++) {
+        //     HashMap<Character,Integer> seen = new HashMap<>();
+        //     int length= 0;
+        //     for (int j = i ; j < s.length(); j++) {
+        //         char ch = s.charAt(j);
+                
+        //         if(i==j && !freq.containsKey(ch)){
+        //             if(t.length()==1 && s.length()==1 ){
+        //                 return a;
+        //             }
+        //             break;
+        //         }
+        //         if(!seen.containsKey(ch)){
+        //             seen.put(ch,1);
+        //         }
+        //         else{
+        //             seen.put(ch,seen.get(ch)+1);
+        //         }
+        //         if(seen.containsKey(ch) && freq.containsKey(ch)){
+        //             if(seen.get(ch)<=freq.get(ch))
+        //             count++;
+        //         }
+        //         if(count==t.length()){
+        //             if(length<=min){
+        //                 start = i;
+        //                 end= j;
+        //                 break;
+        //             }
+        //         }
+        //         length++;
+        //     }
+            
+        //     count=0;
+        // }
+        // System.out.println(start+" "+end);
+        // System.out.println(s.substring(start,end+1));
+        // return s.substring(start,end+1).toString();
+    }
+}
