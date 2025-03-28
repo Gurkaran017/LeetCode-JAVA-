@@ -1,0 +1,46 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 0 ; i<matrix.length ; i++){
+            
+            for(int j = 0 ; j<matrix[i].length ; j++){
+             
+             if(matrix[i][j]==0){
+                list.add(i);
+                list.add(j);
+             }
+            }
+        }
+        System.out.println(list);
+        int n=0;
+        while(n<list.size()){
+            int p = list.get(n);
+            int q = list.get(n+1);
+            System.out.println(list.get(n));
+            System.out.println(list.get(n+1));
+            while(p>=0 && p!=-1){
+                matrix[p][q]=0;
+                p--;
+            }
+            p = list.get(n);
+            q = list.get(n+1);
+            while(q>=0 && q!=-1){
+                matrix[p][q]=0;
+                q--;
+            }
+            p = list.get(n);
+            q = list.get(n+1);
+            while(p<matrix.length && p!=matrix.length){
+                matrix[p][q]=0;
+                p++;
+            }
+            p = list.get(n);
+            q = list.get(n+1);
+            while(q<matrix[p].length && q!=matrix[p].length){
+                matrix[p][q]=0;
+                q++;
+            }
+            n=n+2;
+        }
+    }
+}
