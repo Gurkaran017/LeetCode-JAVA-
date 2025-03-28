@@ -1,0 +1,61 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        for(int i = 0 ; i <magazine.length() ; i++){
+            char ch = magazine.charAt(i);
+            if(!map.containsKey(ch)){
+                map.put(ch,1);
+            }
+            else{
+                map.put(ch,map.get(ch)+1);
+            }
+        }
+
+        for(int i = 0 ; i < ransomNote.length() ; i++){
+            char ch = ransomNote.charAt(i);
+
+            if(map.containsKey(ch) && map.get(ch)>0){
+                map.put(ch,map.get(ch)-1);
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+        // char[] a = new char[ransomNote.length()];
+        // char[] b = new char[magazine.length()];
+
+        // for(int i = 0 ; i < a.length ; i++){
+        //     char ch = ransomNote.charAt(i);
+        //     a[i]=ch;
+        // }
+
+        // for(int i = 0 ; i < b.length ; i++){
+        //     char ch = magazine.charAt(i);
+        //     b[i]=ch;
+        // }
+        
+        // Arrays.sort(a);
+        // Arrays.sort(b);
+        // int count = a.length;
+        // System.out.println(count);
+
+        // HashMap<Integer,Integer> mp = new HashMap<>();
+        // for(int i = 0 ; i<a.length ; i++){
+        //     for(int j = 0 ; j < b.length ; j++){
+        //         if(a[i]==b[j] && !mp.containsKey(j)){
+        //         count--;
+        //         mp.put(j,1);
+        //         break;
+        //     }
+        //     }
+        // }
+        //  System.out.println(count);
+        // if(count<=0){
+        //     return true;
+        // }
+        // return false;
+    }
+}
