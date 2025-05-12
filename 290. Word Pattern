@@ -1,0 +1,44 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<String,String> map =new HashMap<>();
+        String[] a = new String[pattern.length()];
+
+        for(int i = 0 ; i <pattern.length() ; i++){
+            char ch = pattern.charAt(i);
+            a[i]=ch+"";
+        }
+
+        String[] b = s.split(" ");
+
+        
+
+        if(a.length != b.length){
+            return false;
+        }
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(b));
+
+        int st = 0;
+        int en = b.length-1;
+
+        for(int i = 0 ; i < a.length ; i++){
+
+            if(!map.containsKey(a[i])){
+                if(map.containsValue(b[i])){
+                return false;
+            }
+                map.put(a[i],b[i]);
+            }
+            if(!map.get(a[i]).equals(b[i])){
+                return false;
+            }
+            if(map.containsValue(b[i])){
+                if(!map.containsKey(a[i])){
+                return false;
+            }
+            }
+        }
+       return true;
+    }
+}
