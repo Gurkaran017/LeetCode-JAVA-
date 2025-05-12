@@ -1,0 +1,77 @@
+class Solution {
+
+    private String getFreqStr(String str){
+            int[] freq = new int[26];
+
+            for(char ch : str.toCharArray()){
+                freq[ch-'a']++;
+            }
+            StringBuilder sb = new StringBuilder();
+            char ch = 'a';
+            for(int i : freq){
+                sb.append(ch);
+                sb.append(i);
+                ch++;
+            }
+            return sb.toString();
+        }
+
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs==null || strs.length==0){
+            return new ArrayList<>();
+        }
+        HashMap<String,List<String>> map = new HashMap<>();
+
+        for(String s : strs){
+            String freqStr = getFreqStr(s);
+            if(map.containsKey(freqStr)){
+                map.get(freqStr).add(s);
+            }
+            else{
+                List<String> list = new ArrayList<>();
+                list.add(s);
+                map.put(freqStr,list);
+            }
+        }
+        return new ArrayList<>(map.values());
+
+
+
+
+
+
+        // ArrayList<List<String>> list = new ArrayList<>();
+        // int[] num = new int[strs.length];
+        // HashMap<Integer,Integer> map = new HashMap<>();
+        // for(int i = 0 ; i<strs.length ; i++){
+        //     int count = 0;
+        //     int total=0;
+        //     while(count<strs[i].length()){
+        //         String s = strs[i].substring(0,strs[i].length());
+        //         // System.out.println(s);
+        //         char ch = s.charAt(count);
+        //         total=ch+total;
+        //         count++;
+        //     }
+        //     // System.out.println(total);
+        //     num[i]=total;
+        //     map.put(i,num[i]);
+        // }
+        // for(int i = 0 ; i <num.length ; i++){
+        //     ArrayList<String> st = new ArrayList<>();
+        //     int n = num[i];
+
+        //     for(int j=i ; j<num.length ; j++){
+        //         if(n==num[j] && n>-1){
+        //             st.add(strs[j]);
+        //             num[j]=-1;
+        //         }
+        //     }
+        //     if(st.size()>0){
+        //         list.add(st);
+        //     }
+        // }
+        // return list;
+    }
+}
