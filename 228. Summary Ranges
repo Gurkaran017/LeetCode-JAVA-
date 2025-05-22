@@ -1,0 +1,31 @@
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0 ; i < nums.length ; i++){
+            String s ="";
+            int start = nums[i];
+            int last = nums[i];
+            int nextnum = start+1;
+            int j = i+1;
+            while(j<nums.length && nextnum==nums[j]){
+                last=nextnum;
+                nextnum++;
+                j++;
+            }
+            i=j-1;
+            if(start==last){
+                s=s+start;
+                list.add(s);
+            }
+            else{
+                s= s+start;
+                String n = "->";
+                s=s+n;
+                s=s+last;
+                list.add(s);
+            }
+        }
+        System.out.println(list);
+        return list;
+    }
+}
