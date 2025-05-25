@@ -1,0 +1,35 @@
+class Solution {
+    int i = 0 ;
+    char parentheses ;
+    Stack<Character> stack = new Stack<>() ; 
+    public boolean isValid(String s)
+    {  
+        if( i == s.length() ) 
+        {
+            return stack.isEmpty() ;
+        }
+        if( ( s.length() & 1 ) == 1 )
+        {
+            return false;
+        }        
+        parentheses = s.charAt(i) ;
+        if( parentheses == '(' )
+        {
+            stack.push(')') ;
+        }
+        else if( parentheses == '[' )
+        {
+            stack.push(']') ;
+        }
+        else if( parentheses == '{' )
+        {
+            stack.push('}') ;
+        }    
+        else if( stack.empty() || parentheses != stack.pop() )
+        {
+            return false ;
+        }
+        i++ ;
+        return isValid(s) ;
+    }
+}
